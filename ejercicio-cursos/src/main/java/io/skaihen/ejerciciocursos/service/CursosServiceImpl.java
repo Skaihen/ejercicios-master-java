@@ -43,4 +43,9 @@ public class CursosServiceImpl implements CursosService {
         repository.deleteById(codigo);
         return repository.findAll();
     }
+
+    @Override
+    public List<Curso> buscarCursosRangoPrecio(int precioMin, int precioMax) {
+        return repository.findAllBetweenPrices(precioMin, precioMax);
+    }
 }

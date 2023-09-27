@@ -14,4 +14,7 @@ public interface CursosService {
     void actualizarCurso(int codigo, int duracion);
 
     List<Curso> eliminarCurso(int codigo);
+
+    List<Curso> buscarCursosRangoPrecio(int precioMin, int precioMax);
+
 }

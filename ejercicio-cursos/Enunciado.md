@@ -16,3 +16,5 @@ eliminación curso: recibirá en la url el código del curso y lo eliminará, de
 buscar curso: a partir del código del curso recibido en la url, devolverá un JSON con los datos del curso.
 
 actualización de la duración: recibe en la url el código del curso y el número de horas, procediedno a la actualización de dicho dato en el almacen. No devuelve ningún valor
+
+Cursos por precio. Recibirá en la url un precio mínimo y un precio máximo, devolviendo todos los cursos que se encuentren en dicho rango de precios.
