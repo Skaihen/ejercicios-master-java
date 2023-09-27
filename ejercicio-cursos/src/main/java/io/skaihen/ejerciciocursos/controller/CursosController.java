@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.skaihen.ejerciciocursos.model.Curso;
-import io.skaihen.ejerciciocursos.service.CursosServiceImpl;
+import io.skaihen.ejerciciocursos.service.CursosService;
 
 @RestController
 public class CursosController {
     @Autowired
-    CursosServiceImpl service;
+    CursosService service;
 
     @GetMapping(value = "/cursos", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Curso> cursos() {

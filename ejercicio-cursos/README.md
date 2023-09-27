@@ -56,8 +56,16 @@ La aplicación expone los siguientes ***endpoints REST***:
 - Elimina un curso dado su id.
 - Devuelve una lista de todos los cursos.
 
+### Get Courses In Range
+
+***GET*** `/cursos/precio/{precioMin}/{precioMax}`
+
+- Toma de entrada un intervalo de precio en la ruta de la petición.
+- Devuelve una lista de todos los cursos dentro del intervalo de precio.
+
 ## Estructura del proyecto
 
 - **controller** - Contiene el controlador REST
 - **model** - Contiene el modelo de la clase "*Curso*"
 - **service** - Contiene tanto la interfaz lógica como su implementación
+- **repository** - Contiene la interfaz del repositorio JPA
