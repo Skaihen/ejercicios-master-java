@@ -1,6 +1,7 @@
 package io.skaihen.ejerciciocursos.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class CursosServiceImpl implements CursosService {
 
     @Override
     public Curso buscarCurso(int codigo) {
-        return repository.existsById(codigo) ? repository.getReferenceById(codigo) : null;
+        Optional<Curso> curso = repository.findById(codigo);
+        return curso.isPresent() ? curso.get() : null;
     }
 
     @Override
@@ -31,7 +33,9 @@ public class CursosServiceImpl implements CursosService {
 
     @Override
     public void actualizarCurso(int codigo, int duracion) {
-        repository.getReferenceById(codigo).setDuracion(duracion);
+        int precio = repository.getReferenceById(codigo).getPrecio();
+        String nombre = repository.getReferenceById(codigo).getNombre();
+        repository.save(new Curso(codigo, nombre, duracion, precio));
     }
 
     @Override

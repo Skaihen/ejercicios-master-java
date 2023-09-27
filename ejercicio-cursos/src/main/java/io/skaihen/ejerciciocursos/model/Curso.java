@@ -17,7 +17,8 @@ import lombok.NoArgsConstructor;
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+    private int codigo = 0;
+
     private String nombre;
     private int duracion;
     private int precio;
