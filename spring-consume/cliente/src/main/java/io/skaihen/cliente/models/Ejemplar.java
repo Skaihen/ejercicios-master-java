@@ -1,10 +1,9 @@
-package io.skaihen.ejerciciocursos.model;
+package io.skaihen.cliente.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,13 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "cursos")
-public class Curso {
+public class Ejemplar {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo = 0;
-
-    private String nombre;
-    private int duracion;
+    private int isbn;
+    private String titulo;
+    private String autor;
     private int precio;
 }

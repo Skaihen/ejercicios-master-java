@@ -1,4 +1,4 @@
-package io.skaihen.ejerciciocursos.model;
+package io.skaihen.apirest.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,13 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "cursos")
-public class Curso {
+@Table(name = "libros")
+public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo = 0;
-
-    private String nombre;
-    private int duracion;
+    private int isbn;
+    private String titulo;
+    private String autor;
     private int precio;
 }

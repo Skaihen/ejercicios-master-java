@@ -1,60 +1,51 @@
 package io.skaihen.ejerciciocursos.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.skaihen.ejerciciocursos.model.Curso;
+import io.skaihen.ejerciciocursos.repository.CursosRepository;
 
 @Service
 public class CursosServiceImpl implements CursosService {
-    private List<Curso> cursos;
-
-    public CursosServiceImpl() {
-        this.cursos = new ArrayList<>();
-        this.cursos.add(new Curso(1, "Java", 40, 200));
-        this.cursos.add(new Curso(2, "Python", 32, 120));
-        this.cursos.add(new Curso(3, "C#", 50, 300));
-    }
+    @Autowired
+    CursosRepository repository;
 
     @Override
     public List<Curso> cursos() {
-        return this.cursos;
+        return repository.findAll();
     }
 
     @Override
     public Curso buscarCurso(int codigo) {
-        for (Curso curso : this.cursos) {
-            if (curso.getCodigo() == codigo) {
-                return curso;
-            }
-        }
-        return null;
+        Optional<Curso> curso = repository.findById(codigo);
+        return curso.isPresent() ? curso.get() : null;
     }
 
     @Override
     public List<Curso> altaCurso(Curso curso) {
-        this.cursos.add(curso);
-        return this.cursos;
+        repository.save(curso);
+        return repository.findAll();
     }
 
     @Override
     public void actualizarCurso(int codigo, int duracion) {
-        for (Curso curso : this.cursos) {
-            if (curso.getCodigo() == codigo) {
-                curso.setDuracion(duracion);
-            }
-        }
+        int precio = repository.getReferenceById(codigo).getPrecio();
+        String nombre = repository.getReferenceById(codigo).getNombre();
+        repository.save(new Curso(codigo, nombre, duracion, precio));
     }
 
     @Override
     public List<Curso> eliminarCurso(int codigo) {
-        for (Curso curso : this.cursos) {
-            if (curso.getCodigo() == codigo) {
-                this.cursos.remove(curso);
-            }
-        }
-        return this.cursos;
+        repository.deleteById(codigo);
+        return repository.findAll();
+    }
+
+    @Override
+    public List<Curso> buscarCursosRangoPrecio(int precioMin, int precioMax) {
+        return repository.findAllBetweenPrices(precioMin, precioMax);
     }
 }
