@@ -5,11 +5,11 @@ import java.util.List;
 import io.skaihen.cliente.models.Ejemplar;
 
 public interface EjemplarService {
-    List<Ejemplar> ejemplars();
+    List<Ejemplar> ejemplares();
 
     Ejemplar buscarEjemplar(int isbn);
 
-    List<Ejemplar> subirEjemplar(Ejemplar ejemplar);
+    List<Ejemplar> nuevoEjemplar(Ejemplar ejemplar);
 
     void actualizarEjemplar(Ejemplar ejemplar);
 
