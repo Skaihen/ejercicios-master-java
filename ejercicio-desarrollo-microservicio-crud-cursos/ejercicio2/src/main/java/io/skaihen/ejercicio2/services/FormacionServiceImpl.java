@@ -17,37 +17,12 @@ public class FormacionServiceImpl implements FormacionService {
     private String url = "http://localhost:8080/";
 
     @Override
-    public List<Formacion> formacions() {
+    public List<Formacion> formaciones() {
         return Arrays.asList(template.getForObject(url + "cursos", Formacion[].class));
     }
 
     @Override
-    public Formacion buscarFormacion(int id) {
-        return template.getForObject(url + "curso/" + id, Formacion.class);
-    }
-
-    @Override
-    public void nuevoFormacion(Formacion formacion) {
+    public void altaCurso(Formacion formacion) {
         template.postForLocation(url + "curso", formacion);
-    }
-
-    @Override
-    public void actualizarFormacion(Formacion formacion) {
-        template.put(url + "curso", formacion);
-    }
-
-    @Override
-    public void eliminarFormacion(int id) {
-        template.delete(url + "curso/" + id);
-    }
-
-    @Override
-    public List<Formacion> buscarFormacionSpeedMin(int speedMin) {
-        return Arrays.asList(template.getForObject(url + "speed/" + speedMin, Formacion[].class));
-    }
-
-    @Override
-    public List<Formacion> buscarFormacionHpEntreMinMax(int hpMin, int hpMax) {
-        return Arrays.asList(template.getForObject(url + "hp/" + hpMin + "/" + hpMax, Formacion[].class));
     }
 }
