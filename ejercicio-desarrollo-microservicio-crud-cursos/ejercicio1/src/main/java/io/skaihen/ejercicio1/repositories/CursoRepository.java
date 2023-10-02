@@ -12,5 +12,5 @@ import io.skaihen.ejercicio1.models.Curso;
 public interface CursoRepository extends JpaRepository<Curso, Integer> {
 
     @Query("SELECT c FROM Curso c WHERE c.precio BETWEEN :priceMin AND :priceMax")
-    List<Curso> findAllBetweenPriceMinMax(int priceMin, int priceMax);
+    List<Curso> findAllBetweenPriceMinMax(double priceMin, double priceMax);
 }

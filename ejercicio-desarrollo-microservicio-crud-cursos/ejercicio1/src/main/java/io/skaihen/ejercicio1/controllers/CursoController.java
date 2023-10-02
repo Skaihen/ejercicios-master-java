@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.skaihen.ejercicio1.models.Curso;
@@ -31,12 +32,12 @@ public class CursoController {
     }
 
     @PostMapping(value = "/curso", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void altaCurso(Curso curso) {
+    public void altaCurso(@RequestBody Curso curso) {
         cursoService.altaCurso(curso);
     }
 
     @PutMapping(value = "/curso", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void actualizarCurso(Curso curso) {
+    public void actualizarCurso(@RequestBody Curso curso) {
         cursoService.actualizarCurso(curso);
     }
 
@@ -45,9 +46,9 @@ public class CursoController {
         cursoService.eliminarCurso(codCurso);
     }
 
-    @GetMapping(value = "/hp/{hpMin}/{hpMax}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Curso> buscarCursoEntrePrecioMinMax(@PathVariable("hpMin") int hpMin,
-            @PathVariable("hpMax") int hpMax) {
-        return cursoService.buscarCursoEntrePrecioMinMax(hpMin, hpMax);
+    @GetMapping(value = "/precio/{precioMin}/{precioMax}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Curso> buscarCursoEntrePrecioMinMax(@PathVariable("precioMin") double precioMin,
+            @PathVariable("precioMax") double precioMax) {
+        return cursoService.buscarCursoEntrePrecioMinMax(precioMin, precioMax);
     }
 }

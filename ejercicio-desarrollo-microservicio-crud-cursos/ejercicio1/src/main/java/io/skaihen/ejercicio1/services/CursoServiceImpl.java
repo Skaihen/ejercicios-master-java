@@ -41,7 +41,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
-    public List<Curso> buscarCursoEntrePrecioMinMax(int hpMin, int hpMax) {
+    public List<Curso> buscarCursoEntrePrecioMinMax(double hpMin, double hpMax) {
         return cursoRepository.findAllBetweenPriceMinMax(hpMin, hpMax);
     }
 }

@@ -4,7 +4,7 @@ CREATE TABLE cursos (
 	cod_curso INT NOT NULL AUTO_INCREMENT,
 	nombre VARCHAR(50) NOT NULL DEFAULT 'NA',
 	duracion INT,
-	precio INT,
+	precio DOUBLE,
 	PRIMARY KEY (cod_curso));
 
 INSERT INTO cursos (cod_curso, nombre, duracion, precio) VALUES (1, 'Java', 40, 250);

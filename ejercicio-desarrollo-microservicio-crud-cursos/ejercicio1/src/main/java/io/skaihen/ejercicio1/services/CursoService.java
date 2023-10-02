@@ -15,5 +15,5 @@ public interface CursoService {
 
     List<Curso> eliminarCurso(int id);
 
-    List<Curso> buscarCursoEntrePrecioMinMax(int precioMin, int precioMax);
+    List<Curso> buscarCursoEntrePrecioMinMax(double precioMin, double precioMax);
 }
