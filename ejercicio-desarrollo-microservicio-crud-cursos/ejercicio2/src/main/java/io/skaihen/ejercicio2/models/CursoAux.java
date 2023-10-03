@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Formacion {
+public class CursoAux {
     @Id
-    private String curso;
-    private int asignaturas;
+    private int codCurso;
+    private String nombre;
+    private int duracion;
     private double precio;
 }
