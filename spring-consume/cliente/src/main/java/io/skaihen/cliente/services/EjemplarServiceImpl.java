@@ -20,32 +20,4 @@ public class EjemplarServiceImpl implements EjemplarService {
     public List<Ejemplar> ejemplares() {
         return Arrays.asList(template.getForObject(url + "libros", Ejemplar[].class));
     }
-
-    @Override
-    public Ejemplar buscarEjemplar(int isbn) {
-        return template.getForObject(url + "libro/" + isbn, Ejemplar.class);
-    }
-
-    @Override
-    public List<Ejemplar> nuevoEjemplar(Ejemplar ejemplar) {
-        template.postForLocation(url + "nuevo", ejemplar);
-
-        return Arrays.asList(template.getForObject(url + "libros", Ejemplar[].class));
-    }
-
-    @Override
-    public void actualizarEjemplar(Ejemplar ejemplar) {
-        template.put(url + "actualizar", ejemplar);
-    }
-
-    @Override
-    public List<Ejemplar> eliminarEjemplar(int isbn) {
-        template.delete(url + "eliminar" + isbn);
-        return Arrays.asList(template.getForObject(url + "libros", Ejemplar[].class));
-    }
-
-    @Override
-    public List<Ejemplar> buscarPrecioMinMax(int precioMin, int precioMax) {
-        return Arrays.asList(template.getForObject(url + "libros/" + precioMin + "/" + precioMax, Ejemplar[].class));
-    }
 }
