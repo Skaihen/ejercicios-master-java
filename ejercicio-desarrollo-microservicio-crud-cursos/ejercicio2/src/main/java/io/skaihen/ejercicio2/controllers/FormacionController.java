@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.skaihen.ejercicio2.models.Formacion;
@@ -23,7 +24,7 @@ public class FormacionController {
     }
 
     @PostMapping(value = "/formacion", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void altaCurso(Formacion formacion) {
+    public void altaCurso(@RequestBody Formacion formacion) {
         formacionService.altaCurso(formacion);
     }
 }
