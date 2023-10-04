@@ -24,7 +24,7 @@ INSERT INTO productos (codigo_producto, nombre, precio_unitario, stock) VALUES (
 INSERT INTO productos (codigo_producto, nombre, precio_unitario, stock) VALUES (3, 'Teclado', 50, 30);
 INSERT INTO productos (codigo_producto, nombre, precio_unitario, stock) VALUES (4, 'Auriculares', 30, 40);
 
-INSERT INTO pedidos (id_pedido, codigo_producto, unidades, total, fecha) VALUES (1, 1, 1, 100, '2022-05-01');
-INSERT INTO pedidos (id_pedido, codigo_producto, unidades, total, fecha) VALUES (2, 2, 1, 200, '2022-05-02');
-INSERT INTO pedidos (id_pedido, codigo_producto, unidades, total, fecha) VALUES (3, 3, 1, 50, '2022-05-03');
+INSERT INTO pedidos (id_pedido, codigo_producto, unidades, total, fecha) VALUES (1, 1, 4, 100, '2022-05-01');
+INSERT INTO pedidos (id_pedido, codigo_producto, unidades, total, fecha) VALUES (2, 2, 3, 200, '2022-05-02');
+INSERT INTO pedidos (id_pedido, codigo_producto, unidades, total, fecha) VALUES (3, 3, 2, 50, '2022-05-03');
 INSERT INTO pedidos (id_pedido, codigo_producto, unidades, total, fecha) VALUES (4, 4, 1, 30, '2022-05-04');

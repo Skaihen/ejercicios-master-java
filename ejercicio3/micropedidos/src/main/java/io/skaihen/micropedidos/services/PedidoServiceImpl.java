@@ -1,7 +1,6 @@
 package io.skaihen.micropedidos.services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,39 +8,39 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import io.skaihen.micropedidos.models.Pedido;
+import io.skaihen.micropedidos.models.ProductoAux;
+import io.skaihen.micropedidos.repositories.PedidoRepository;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
     @Autowired
-    RestTemplate template;
+    RestTemplate restTemplate;
+
+    @Autowired
+    PedidoRepository pedidoRepository;
 
     private String url = "http://localhost:8080/";
 
     @Override
     public List<Pedido> pedidos() {
-        List<Pedido> listaPedido = new ArrayList<>();
-
-        Arrays.asList(template.getForObject(url + "productos", ProductoAux[].class)).forEach(
-                producto -> listaPedido.add(
-                        new Pedido(producto.getNombre(), producto.getDuracion() >= 50 ? 10 : 5, producto.getPrecio())));
-
-        return listaPedido;
+        return pedidoRepository.findAll();
     }
 
     @Override
-    public void altaProducto(Pedido pedido) {
+    public void altaPedido(int codigoProducto, int unidades) {
+        Integer stockProducto = restTemplate.getForObject(url + "stock/" + codigoProducto, Integer.class);
+        Double precioProducto = restTemplate.getForObject(url + "precio/" + codigoProducto, Double.class);
 
-        boolean productoExiste = false;
+        if (stockProducto != null && precioProducto != null && stockProducto > unidades
+                && (restTemplate.getForObject(url + "precio/" + codigoProducto, Double.class) != null)) {
 
-        for (ProductoAux producto : Arrays.asList(template.getForObject(url + "productos", ProductoAux[].class))) {
-            if (producto.getNombre().equals(pedido.getProducto())) {
-                productoExiste = true;
-            }
-        }
+            double totalPedido = precioProducto
+                    * unidades;
 
-        if (!productoExiste) {
-            template.postForLocation(url + "producto",
-                    new ProductoAux(0, pedido.getProducto(), pedido.getAsignaturas() * 10, pedido.getPrecio()));
+            pedidoRepository.save(new Pedido(0, codigoProducto, unidades, totalPedido, LocalDateTime.now()));
+
+            restTemplate.put(url + "producto/" + codigoProducto + "/" + (stockProducto - unidades),
+                    ProductoAux.class);
         }
     }
 }

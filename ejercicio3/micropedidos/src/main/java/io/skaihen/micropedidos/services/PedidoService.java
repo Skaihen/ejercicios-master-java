@@ -7,5 +7,5 @@ import io.skaihen.micropedidos.models.Pedido;
 public interface PedidoService {
     List<Pedido> pedidos();
 
-    void altaProducto(Pedido pedido);
+    void altaPedido(int codigoProducto, int unidades);
 }

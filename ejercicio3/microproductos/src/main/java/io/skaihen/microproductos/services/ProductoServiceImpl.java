@@ -20,6 +20,11 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
+    public int buscarStockProducto(int codigoProducto) {
+        return productoRepository.getReferenceById(codigoProducto).getStock();
+    }
+
+    @Override
     public void actualizarStockProducto(int codigoProducto, int stock) {
         productoRepository.findById(codigoProducto)
                 .ifPresent(producto -> {
