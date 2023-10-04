@@ -21,11 +21,29 @@ public class PedidoServiceImpl implements PedidoService {
 
     private String url = "http://localhost:8080/";
 
+    /**
+     * The function "pedidos()" returns a list of all Pedido objects from the
+     * pedidoRepository.
+     *
+     * @return The method is returning a List of Pedido objects.
+     */
     @Override
     public List<Pedido> pedidos() {
         return pedidoRepository.findAll();
     }
 
+    /**
+     * The function `altaPedido` checks the stock and price of a product, creates a
+     * new order if there is
+     * enough stock, and updates the stock quantity.
+     *
+     * @param codigoProducto The codigoProducto parameter represents the code or
+     *                       identifier of the product
+     *                       for which the pedido (order) is being placed.
+     * @param unidades       The parameter "unidades" represents the number of units
+     *                       of a product that are being
+     *                       requested in the order.
+     */
     @Override
     public void altaPedido(int codigoProducto, int unidades) {
         Integer stockProducto = restTemplate.getForObject(url + "stock/" + codigoProducto, Integer.class);

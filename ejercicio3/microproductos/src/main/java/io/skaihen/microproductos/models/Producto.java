@@ -9,6 +9,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The above class represents a product with properties such as code, name, unit
+ * price, and stock.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

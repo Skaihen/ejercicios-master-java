@@ -11,6 +11,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The class "Pedido" represents a order with its unique ID, product code,
+ * number of units, total
+ * price, and date.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
