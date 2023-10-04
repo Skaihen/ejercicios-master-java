@@ -10,6 +10,7 @@ import io.skaihen.microproductos.repositories.ProductoRepository;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
+
     @Autowired
     ProductoRepository productoRepository;
 
@@ -21,7 +22,10 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void actualizarStockProducto(int codigoProducto, int stock) {
         productoRepository.findById(codigoProducto)
-                .ifPresent(producto -> productoRepository.save(producto.setStock(stock)));
+                .ifPresent(producto -> {
+                    producto.setStock(stock);
+                    productoRepository.save(producto);
+                });
     }
 
     @Override
